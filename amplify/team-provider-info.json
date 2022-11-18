@@ -17,6 +17,12 @@
           "appId": "diy0hu2msqi2m",
           "type": "cicd"
         }
+      },
+      "auth": {
+        "landingpagetestafeefa59": {}
+      },
+      "api": {
+        "landingpagetest": {}
       }
     }
   }
