@@ -9,7 +9,7 @@ import {
   Element as SlateElement,
 } from 'slate'
 import { withHistory } from 'slate-history'
-import { Button, Icon, Toolbar } from './slatecomponents'
+import { Button, Icon, Toolbar } from './SlateComponents'
 
 const HOTKEYS = {
   'mod+b': 'bold',
@@ -21,7 +21,7 @@ const HOTKEYS = {
 const LIST_TYPES = ['numbered-list', 'bulleted-list']
 const TEXT_ALIGN_TYPES = ['left', 'center', 'right', 'justify']
 
-const RichTextExample = () => {
+const RichTextEditor = () => {
   const renderElement = useCallback(props => <Element {...props} />, [])
   const renderLeaf = useCallback(props => <Leaf {...props} />, [])
   const editor = useMemo(() => withHistory(withReact(createEditor())), [])
@@ -269,4 +269,4 @@ const initialValue = [
   },
 ]
 
-export default RichTextExample
+export default RichTextEditor
