@@ -13,6 +13,7 @@ export const createBlog = /* GraphQL */ `
         items {
           id
           title
+          content
           createdAt
           updatedAt
           blogPostsId
@@ -22,6 +23,7 @@ export const createBlog = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -37,6 +39,7 @@ export const updateBlog = /* GraphQL */ `
         items {
           id
           title
+          content
           createdAt
           updatedAt
           blogPostsId
@@ -46,6 +49,7 @@ export const updateBlog = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -61,6 +65,7 @@ export const deleteBlog = /* GraphQL */ `
         items {
           id
           title
+          content
           createdAt
           updatedAt
           blogPostsId
@@ -70,99 +75,7 @@ export const deleteBlog = /* GraphQL */ `
       }
       createdAt
       updatedAt
-    }
-  }
-`;
-export const createComment = /* GraphQL */ `
-  mutation CreateComment(
-    $input: CreateCommentInput!
-    $condition: ModelCommentConditionInput
-  ) {
-    createComment(input: $input, condition: $condition) {
-      id
-      post {
-        id
-        title
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        blogPostsId
-        owner
-      }
-      content
-      createdAt
-      updatedAt
-      postCommentsId
-    }
-  }
-`;
-export const updateComment = /* GraphQL */ `
-  mutation UpdateComment(
-    $input: UpdateCommentInput!
-    $condition: ModelCommentConditionInput
-  ) {
-    updateComment(input: $input, condition: $condition) {
-      id
-      post {
-        id
-        title
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        blogPostsId
-        owner
-      }
-      content
-      createdAt
-      updatedAt
-      postCommentsId
-    }
-  }
-`;
-export const deleteComment = /* GraphQL */ `
-  mutation DeleteComment(
-    $input: DeleteCommentInput!
-    $condition: ModelCommentConditionInput
-  ) {
-    deleteComment(input: $input, condition: $condition) {
-      id
-      post {
-        id
-        title
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        comments {
-          nextToken
-        }
-        createdAt
-        updatedAt
-        blogPostsId
-        owner
-      }
-      content
-      createdAt
-      updatedAt
-      postCommentsId
+      owner
     }
   }
 `;
@@ -174,6 +87,7 @@ export const createPost = /* GraphQL */ `
     createPost(input: $input, condition: $condition) {
       id
       title
+      content
       blog {
         id
         name
@@ -182,6 +96,7 @@ export const createPost = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       comments {
         items {
@@ -190,6 +105,7 @@ export const createPost = /* GraphQL */ `
           createdAt
           updatedAt
           postCommentsId
+          owner
         }
         nextToken
       }
@@ -208,6 +124,7 @@ export const updatePost = /* GraphQL */ `
     updatePost(input: $input, condition: $condition) {
       id
       title
+      content
       blog {
         id
         name
@@ -216,6 +133,7 @@ export const updatePost = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       comments {
         items {
@@ -224,6 +142,7 @@ export const updatePost = /* GraphQL */ `
           createdAt
           updatedAt
           postCommentsId
+          owner
         }
         nextToken
       }
@@ -242,6 +161,7 @@ export const deletePost = /* GraphQL */ `
     deletePost(input: $input, condition: $condition) {
       id
       title
+      content
       blog {
         id
         name
@@ -250,6 +170,7 @@ export const deletePost = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       comments {
         items {
@@ -258,12 +179,115 @@ export const deletePost = /* GraphQL */ `
           createdAt
           updatedAt
           postCommentsId
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
       blogPostsId
+      owner
+    }
+  }
+`;
+export const createComment = /* GraphQL */ `
+  mutation CreateComment(
+    $input: CreateCommentInput!
+    $condition: ModelCommentConditionInput
+  ) {
+    createComment(input: $input, condition: $condition) {
+      id
+      post {
+        id
+        title
+        content
+        blog {
+          id
+          name
+          createdAt
+          updatedAt
+          owner
+        }
+        comments {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        blogPostsId
+        owner
+      }
+      content
+      createdAt
+      updatedAt
+      postCommentsId
+      owner
+    }
+  }
+`;
+export const updateComment = /* GraphQL */ `
+  mutation UpdateComment(
+    $input: UpdateCommentInput!
+    $condition: ModelCommentConditionInput
+  ) {
+    updateComment(input: $input, condition: $condition) {
+      id
+      post {
+        id
+        title
+        content
+        blog {
+          id
+          name
+          createdAt
+          updatedAt
+          owner
+        }
+        comments {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        blogPostsId
+        owner
+      }
+      content
+      createdAt
+      updatedAt
+      postCommentsId
+      owner
+    }
+  }
+`;
+export const deleteComment = /* GraphQL */ `
+  mutation DeleteComment(
+    $input: DeleteCommentInput!
+    $condition: ModelCommentConditionInput
+  ) {
+    deleteComment(input: $input, condition: $condition) {
+      id
+      post {
+        id
+        title
+        content
+        blog {
+          id
+          name
+          createdAt
+          updatedAt
+          owner
+        }
+        comments {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        blogPostsId
+        owner
+      }
+      content
+      createdAt
+      updatedAt
+      postCommentsId
       owner
     }
   }

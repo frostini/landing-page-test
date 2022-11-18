@@ -1,10 +1,10 @@
 import { Amplify, API, withSSRContext } from 'aws-amplify';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import awsExports from '../../src/aws-exports';
-import { deletePost } from '../../src/graphql/mutations';
-import { getPost, listPosts } from '../../src/graphql/queries';
-import styles from '../../styles/Home.module.css';
+import awsExports from '../../aws-exports';
+import { deletePost } from '../../graphql/mutations';
+import { getPost, listPosts } from '../../graphql/queries';
+import styles from '../_app'
 
 Amplify.configure({ ...awsExports, ssr: true });
 
