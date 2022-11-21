@@ -1,4 +1,9 @@
 /** @type {import('next').NextConfig} */
+const withMarkdoc = require('@markdoc/next.js');
+
+module.exports = withMarkdoc(/* options */)({
+  pageExtensions: ['md', 'mdoc', 'js', 'jsx', 'ts', 'tsx']
+});
 const nextConfig = {
   reactStrictMode: true,
   experimental: {
@@ -9,13 +14,11 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'tailwindui.com',
-        port: '',
         pathname: '/img/logos/**',
       },
       {
         protocol: 'https',
         hostname: 'images.unsplash.com',
-        port: '',
         pathname: '/**',
       },
       
