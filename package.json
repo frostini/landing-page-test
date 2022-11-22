@@ -17,6 +17,7 @@
     "@markdoc/markdoc": "^0.2.1",
     "@markdoc/next.js": "^0.2.1",
     "@tailwindcss/forms": "^0.5.3",
+    "@wysimark/react": "^1.0.55",
     "autoprefixer": "^10.4.12",
     "aws-amplify": "^5.0.2",
     "clsx": "^1.2.1",

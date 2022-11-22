@@ -1,24 +1,23 @@
 import { Fragment, useState } from 'react'
-import Image from 'next/image'
 import { Dialog, Transition } from '@headlessui/react'
 import {
   Bars3Icon,
   CalendarIcon,
+  ChartBarIcon,
+  FolderIcon,
   HomeIcon,
-  MagnifyingGlassCircleIcon,
-  MapIcon,
-  MegaphoneIcon,
-  UserGroupIcon,
+  InboxIcon,
+  UsersIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 
 const navigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
+  { name: 'Team', href: '#', icon: UsersIcon, current: false },
+  { name: 'Projects', href: '#', icon: FolderIcon, current: false },
   { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-  { name: 'Teams', href: '#', icon: UserGroupIcon, current: false },
-  { name: 'Directory', href: '#', icon: MagnifyingGlassCircleIcon, current: false },
-  { name: 'Announcements', href: '#', icon: MegaphoneIcon, current: false },
-  { name: 'Office Map', href: '#', icon: MapIcon, current: false },
+  { name: 'Documents', href: '#', icon: InboxIcon, current: false },
+  { name: 'Reports', href: '#', icon: ChartBarIcon, current: false },
 ]
 
 function classNames(...classes) {
@@ -34,13 +33,13 @@ export default function Example() {
         This example requires updating your template:
 
         ```
-        <html class="h-full bg-white">
-        <body class="h-full overflow-hidden">
+        <html class="h-full bg-gray-100">
+        <body class="h-full">
         ```
       */}
-      <div className="flex h-full">
+      <div>
         <Transition.Root show={sidebarOpen} as={Fragment}>
-          <Dialog as="div" className="relative z-40 lg:hidden" onClose={setSidebarOpen}>
+          <Dialog as="div" className="relative z-40 md:hidden" onClose={setSidebarOpen}>
             <Transition.Child
               as={Fragment}
               enter="transition-opacity ease-linear duration-300"
@@ -63,7 +62,7 @@ export default function Example() {
                 leaveFrom="translate-x-0"
                 leaveTo="-translate-x-full"
               >
-                <Dialog.Panel className="relative flex w-full max-w-xs flex-1 flex-col bg-white focus:outline-none">
+                <Dialog.Panel className="relative flex w-full max-w-xs flex-1 flex-col bg-indigo-700">
                   <Transition.Child
                     as={Fragment}
                     enter="ease-in-out duration-300"
@@ -86,53 +85,43 @@ export default function Example() {
                   </Transition.Child>
                   <div className="h-0 flex-1 overflow-y-auto pt-5 pb-4">
                     <div className="flex flex-shrink-0 items-center px-4">
-                      <Image width={20} height={20}
-                          className="h-8 w-auto"
-                          src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80"
-                          alt="Your Copany"
+                      <img
+                        className="h-8 w-auto"
+                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=300"
+                        alt="Your Company"
                       />
                     </div>
-                    <nav aria-label="Sidebar" className="mt-5">
-                      <div className="space-y-1 px-2">
-                        {navigation.map((item) => (
-                          <a
-                            key={item.name}
-                            href={item.href}
-                            className={classNames(
-                              item.current
-                                ? 'bg-gray-100 text-gray-900'
-                                : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                              'group flex items-center px-2 py-2 text-base font-medium rounded-md'
-                            )}
-                          >
-                            <item.icon
-                              className={classNames(
-                                item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
-                                'mr-4 h-6 w-6'
-                              )}
-                              aria-hidden="true"
-                            />
-                            {item.name}
-                          </a>
-                        ))}
-                      </div>
+                    <nav className="mt-5 space-y-1 px-2">
+                      {navigation.map((item) => (
+                        <a
+                          key={item.name}
+                          href={item.href}
+                          className={classNames(
+                            item.current
+                              ? 'bg-indigo-800 text-white'
+                              : 'text-white hover:bg-indigo-600 hover:bg-opacity-75',
+                            'group flex items-center px-2 py-2 text-base font-medium rounded-md'
+                          )}
+                        >
+                          <item.icon className="mr-4 h-6 w-6 flex-shrink-0 text-indigo-300" aria-hidden="true" />
+                          {item.name}
+                        </a>
+                      ))}
                     </nav>
                   </div>
-                  <div className="flex flex-shrink-0 border-t border-gray-200 p-4">
+                  <div className="flex flex-shrink-0 border-t border-indigo-800 p-4">
                     <a href="#" className="group block flex-shrink-0">
                       <div className="flex items-center">
                         <div>
-                          <Image width={20} height={20} 
+                          <img
                             className="inline-block h-10 w-10 rounded-full"
-                            src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80"
-                            alt=""                          
+                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                            alt=""
                           />
                         </div>
                         <div className="ml-3">
-                          <p className="text-base font-medium text-gray-700 group-hover:text-gray-900">
-                            Whitney Francis
-                          </p>
-                          <p className="text-sm font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
+                          <p className="text-base font-medium text-white">Tom Cook</p>
+                          <p className="text-sm font-medium text-indigo-200 group-hover:text-white">View profile</p>
                         </div>
                       </div>
                     </a>
@@ -147,102 +136,77 @@ export default function Example() {
         </Transition.Root>
 
         {/* Static sidebar for desktop */}
-        <div className="hidden lg:flex lg:flex-shrink-0">
-          <div className="flex w-64 flex-col">
-            {/* Sidebar component, swap this element with another sidebar if you like */}
-            <div className="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-gray-100">
-              <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
-                <div className="flex flex-shrink-0 items-center px-4">
-                  <Image width={20} height={20}
-                    className="h-8 w-auto"
-                    src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80"
-                    alt="Your Compan"
-                  />
+        <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
+          {/* Sidebar component, swap this element with another sidebar if you like */}
+          <div className="flex min-h-0 flex-1 flex-col bg-indigo-700">
+            <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
+              <div className="flex flex-shrink-0 items-center px-4">
+                <img
+                  className="h-8 w-auto"
+                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=300"
+                  alt="Your Company"
+                />
+              </div>
+              <nav className="mt-5 flex-1 space-y-1 px-2">
+                {navigation.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className={classNames(
+                      item.current ? 'bg-indigo-800 text-white' : 'text-white hover:bg-indigo-600 hover:bg-opacity-75',
+                      'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
+                    )}
+                  >
+                    <item.icon className="mr-3 h-6 w-6 flex-shrink-0 text-indigo-300" aria-hidden="true" />
+                    {item.name}
+                  </a>
+                ))}
+              </nav>
+            </div>
+            <div className="flex flex-shrink-0 border-t border-indigo-800 p-4">
+              <a href="#" className="group block w-full flex-shrink-0">
+                <div className="flex items-center">
+                  <div>
+                    <img
+                      className="inline-block h-9 w-9 rounded-full"
+                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      alt=""
+                    />
+                  </div>
+                  <div className="ml-3">
+                    <p className="text-sm font-medium text-white">Tom Cook</p>
+                    <p className="text-xs font-medium text-indigo-200 group-hover:text-white">View profile</p>
+                  </div>
                 </div>
-                <nav className="mt-5 flex-1" aria-label="Sidebar">
-                  <div className="space-y-1 px-2">
-                    {navigation.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className={classNames(
-                          item.current
-                            ? 'bg-gray-200 text-gray-900'
-                            : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                          'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
-                        )}
-                      >
-                        <item.icon
-                          className={classNames(
-                            item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
-                            'mr-3 h-6 w-6'
-                          )}
-                          aria-hidden="true"
-                        />
-                        {item.name}
-                      </a>
-                    ))}
-                  </div>
-                </nav>
-              </div>
-              <div className="flex flex-shrink-0 border-t border-gray-200 p-4">
-                <a href="#" className="group block w-full flex-shrink-0">
-                  <div className="flex items-center">
-                    <div>
-                      <Image width={20} height={20}
-                        className="inline-block h-9 w-9 rounded-full"
-                        src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80"
-                        alt=""
-                      />
-                    </div>
-                    <div className="ml-3">
-                      <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">Whitney Francis</p>
-                      <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
-                    </div>
-                  </div>
-                </a>
-              </div>
+              </a>
             </div>
           </div>
         </div>
-        <div className="flex min-w-0 flex-1 flex-col overflow-hidden">
-          <div className="lg:hidden">
-            <div className="flex items-center justify-between border-b border-gray-200 bg-gray-50 px-4 py-1.5">
-              <div>
-                <Image width={20} height={20}
-                  className="h-8 w-auto"
-                  src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80"
-                  alt="Your Coy"
-                />
+        <div className="flex flex-1 flex-col md:pl-64">
+          <div className="sticky top-0 z-10 bg-gray-100 pl-1 pt-1 sm:pl-3 sm:pt-3 md:hidden">
+            <button
+              type="button"
+              className="-ml-0.5 -mt-0.5 inline-flex h-12 w-12 items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+              onClick={() => setSidebarOpen(true)}
+            >
+              <span className="sr-only">Open sidebar</span>
+              <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+            </button>
+          </div>
+          <main className="flex-1">
+            <div className="py-6">
+              <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
+                <h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
               </div>
-              <div>
-                <button
-                  type="button"
-                  className="-mr-3 inline-flex h-12 w-12 items-center justify-center rounded-md text-gray-500 hover:text-gray-900"
-                  onClick={() => setSidebarOpen(true)}
-                >
-                  <span className="sr-only">Open sidebar</span>
-                  <Bars3Icon className="h-6 w-6" aria-hidden="true" />
-                </button>
+              <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
+                {/* Replace with your content */}
+                <div className="py-4">
+                  <div className="h-96 rounded-lg border-4 border-dashed border-gray-200" />
+                </div>
+                {/* /End replace */}
               </div>
             </div>
-          </div>
-          <div className="relative z-0 flex flex-1 overflow-hidden">
-            <main className="relative z-0 flex-1 overflow-y-auto focus:outline-none xl:order-last">
-              {/* Start main area*/}
-              <div className="absolute inset-0 py-6 px-4 sm:px-6 lg:px-8">
-                <div className="h-full rounded-lg border-2 border-dashed border-gray-200" />
-              </div>
-              {/* End main area */}
-            </main>
-            <aside className="relative hidden w-96 flex-shrink-0 overflow-y-auto border-r border-gray-200 xl:order-first xl:flex xl:flex-col">
-              {/* Start secondary column (hidden on smaller screens) */}
-              <div className="absolute inset-0 py-6 px-4 sm:px-6 lg:px-8">
-                <div className="h-full rounded-lg border-2 border-dashed border-gray-200" />
-              </div>
-              {/* End secondary column */}
-            </aside>
-          </div>
+          </main>
         </div>
       </div>
     </>
