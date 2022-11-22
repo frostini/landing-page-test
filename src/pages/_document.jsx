@@ -5,7 +5,7 @@ export default function Document(props) {
 
   return (
     <Html
-      className="h-full scroll-smooth bg-white antialiased [font-feature-settings:'ss01']"
+      className="h-full scroll-smooth bg-gray-100 antialiased [font-feature-settings:'ss01']"
       lang="en"
     >
       <Head>
@@ -24,7 +24,7 @@ export default function Document(props) {
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
         />
       </Head>
-      <body className="flex h-full flex-col">
+      <body className="h-full flex flex-col">
         <Main />
         <NextScript />
       </body>
