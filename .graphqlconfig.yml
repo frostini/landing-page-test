@@ -1,6 +1,6 @@
 projects:
   landingpagetest:
-    schemaPath: src/graphql/schema.json
+    schemaPath: amplify/backend/api/landingpagetest/build/schema.graphql
     includes:
       - src/graphql/**/*.js
     excludes:
