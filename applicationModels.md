@@ -93,29 +93,29 @@ PolicyProposal
 ### DevStatus
 ToDo
 ### Associations
-belongs_to GovOrgMembership
-belongs_to PollStrategy
-belongs_to PolicyPoll
-has_many ProposalGroup
+belongs_to GovOrgMembership (step one, silent)
+belongs_to PollStrategy (step two)
+belongs_to PolicyPoll (step three)
+has_many ProposalGroup (step one, on submit)
 has_many PolicyGroup through ProposalGroup
-has_many ProposalTag
+has_many ProposalTag (step one)
 has_many PolicyTag through ProposalTag
 ### Attributes
 id
-govOrgMembershipId: id
-pollStrategyId: id
-policyPollId: id
+govOrgMembershipId: id (step one, silent)
+pollStrategyId: id 
+policyPollId: id (step three)
 --- 
-policyTitle: string
-policySummary: string
-policyBody: id
-policyVersion: string
-policyStatus: string
+policyTitle: string (step one)
+policySummary: string (step two)
+policyBody: id (step two)
+policyVersion: string (step 4, given when graduated)
+policyStatus: string (step_one, step_two, step_three, complete)
 ### Future Attributes
 add the through models for nested associaiton retrieval
 create a smart ID serializer
 abstract out policyStatus into its own model
-
+update to define official status for Policy Proposals
 ## Proposal Group
 ### Name
 ProposalGroup
@@ -124,7 +124,6 @@ ToDo
 ### Associations
 belongs_to PolicyProposal
 belongs_to PolicyGroup
-
 ### Attributes
 id
 policyGroupId: id

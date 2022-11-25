@@ -1,6 +1,3 @@
-LETS GET IT BOo
-TEST THE API UPDATES
-
 DONE
 - abstract into layout components for the navigation
   https://nextjs.org/docs/basic-features/layouts
@@ -10,15 +7,67 @@ create routes/pages for
   drafts - create
   drafts - show/edit
 create the new show
-
+- link the create drafts button to new
 TODO
+----
+- seperate each page screen into wizards steps and create all the wizard steps
+----
+
+
+- link up the different wizard steps with Link element
+- add the step indicator
+- add wizard breadcrumbs links
+update the elements for step one
+update the elements for step two
+update the elements for step three
+update the elements for step four
+update the elements for step five
+
+--- 
+add the models to support the GovOrgProfile model
+add the models to support the GovOrg model
+add the models to support the Official model
+add the models to support PolicyProposal
+---
+create onboarding wizard for government officials
+
+add the required form functions per step basis for draft wizard
+  step one
+  step two
+  step three
+  step four
+  step five
+--- 
+update form elements on a per page basis
+  step one - title, tag, group
+    policyTitle
+    select proposal tags
+    select proposal groups
+    add government id from the authentication background
+  step two - policy body
+    policySummary
+    policyBody
+    policyStrategy
+  step three - poll model
+    pollStartDate: datetime
+    pollEndDate: datetime
+    pollTimeZone: string
+    pollMediumType: string
+    finalize the poll questions
+  step four -
+    approve the group +/-
+  step five
+    view the proposed draft and graduate
+    poll status, live
+    policy status, complete
+
+
+
+link the edit view to show page
 add Amplify sign in function to sign in page
 add Amplify sign up function to sign up page
 add User access to the API
 update the Blog/Posts/Comments models to coincide
-
-link the create button to new
-link the edit view to show page
 load the index page with live items
 add the show page items
 
