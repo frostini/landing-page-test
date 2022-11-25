@@ -77,7 +77,7 @@ export default function Home({ posts = [] }) {
           <div className={styles.card}>
             <h3 className={styles.title}>New Post</h3>
 
-            <Authenticator>
+            
               <form onSubmit={handleCreatePost}>
                 <fieldset>
                   <legend>Title</legend>
@@ -100,7 +100,7 @@ export default function Home({ posts = [] }) {
                   Sign out
                 </button>
               </form>
-            </Authenticator>
+            
           </div>
         </div>
       </main>
