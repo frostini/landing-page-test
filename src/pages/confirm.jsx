@@ -48,11 +48,11 @@ export default function Confirm() {
       onSubmit={(values, {isSubmitting}) => {
         const { code } = values
         const { email: username } = router.query
-        const success = confirmSignUp({username,code})
-        
-        router.push({
-          pathname: '/dashboard'
-        })
+        confirmSignUp({username,code}).then((user) => {
+          router.push({
+            pathname: '/dashboard'
+          })
+        }) 
       }}
     >
       {({ isSubmitting }) => (

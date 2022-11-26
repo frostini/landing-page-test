@@ -1,12 +1,13 @@
 import { Fragment } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { Popover, Transition } from '@headlessui/react'
 import clsx from 'clsx'
-
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { Logo } from '@/components/Logo'
 import { NavLink } from '@/components/NavLink'
+import loguito from 'public/pplogo.png'
 
 function MobileNavLink({ href, children }) {
   return (
@@ -96,7 +97,15 @@ export function Header() {
         <nav className="relative z-50 flex justify-between">
           <div className="flex items-center md:gap-x-12">
             <Link href="#" aria-label="Home">
-              <Logo className="h-10 w-auto" />
+              <span className='flex items-center font-bold font-display text-xl'>
+                <Image 
+                  className="h-12 w-auto pr-2"
+                  src={loguito}
+                />
+                Policy<span className="text-blue-600">Pal</span>
+              </span>
+
+              
             </Link>
             <div className="hidden md:flex md:gap-x-6">
               <NavLink href="#features">Features</NavLink>
