@@ -14,10 +14,38 @@ create the new show
 
 TODO
 ----
+  - add formik form elements
+
+- add the authenticator elements
+  - add submit function for auth
+  - add confirmation scene
+  - add confirmation link to wizard
+  - load user data in dashboard and update in the navigation bar to display
+
+
+
+  fields firstName
+  LastName
+  emailaddress
+  password
+  
+
+add sign up element to the sign up page
+route to dashboard after sign up
+add govorg wizard element for profile
+add signout link to dashboard main bar
+add sign in elements to the sign in page
+
+
 - add the step indicator
+
+
+- configure formik for wizard step
+
+add sign out button above the user link
+
 ----
 
-- add wizard breadcrumbs links
 update the elements for step one
 update the elements for step two
 update the elements for step three
@@ -71,7 +99,7 @@ add User access to the API
 update the Blog/Posts/Comments models to coincide
 load the index page with live items
 add the show page items
-
+- add wizard breadcrumbs links
 
 complete layout components from tailwindui
   drafts - index

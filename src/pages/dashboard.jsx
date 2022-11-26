@@ -1,6 +1,8 @@
 import GovAppShell from '@/layout/GovAppShell'
-
+import { Auth } from 'aws-amplify';
+import { useState } from 'react'
 export default function Dashboard() {
+
   return (
     <>
       <div className="py-6">

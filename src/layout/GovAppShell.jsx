@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Fragment, useState } from 'react'
+import { Fragment, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import {
   Bars3Icon,
@@ -7,13 +7,25 @@ import {
 } from '@heroicons/react/24/outline'
 import { NavLinks as navigation } from '@/layout/gov/NavLinks'
 import DesktopNav from '@/layout/gov/DesktopNav'
+import { Auth } from 'aws-amplify';
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function GovAppShell({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
-
+  const [user, setUser] = useState({})
+  useEffect(() => {
+    Auth.currentAuthenticatedUser().then((user) => {
+    
+      // console.log('user email = ' + user.attributes.email);
+      setUser(user.attributes)
+      
+    });
+  }, [user])
+  
+  // const user = await Auth.currentAuthenticatedUser()
+  
   return (
     <>
       {/*
@@ -122,7 +134,7 @@ export default function GovAppShell({ children }) {
           </Dialog>
         </Transition.Root>
         {/* Static sidebar for desktop */}
-        <DesktopNav />
+        <DesktopNav user={user}/>
         <div className="flex flex-1 flex-col md:pl-64">
           <div className="sticky top-0 z-10 bg-gray-100 pl-1 pt-1 sm:pl-3 sm:pt-3 md:hidden">
             <button

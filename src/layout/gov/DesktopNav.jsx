@@ -1,12 +1,24 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NavLinks as navigation } from '@/layout/gov/NavLinks'
+import { Auth } from 'aws-amplify';
+
+
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function DesktopNav() {
+export default function DesktopNav({ user = {} }) {
   const router = useRouter()
+  async function signOut() {
+    try {
+          await Auth.signOut();
+          router.push('/')
+      } catch (error) {
+          console.log('error signing out: ', error);
+      }
+  }
 
   return (
     <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
@@ -37,23 +49,27 @@ export default function DesktopNav() {
             ))}
           </nav>
         </div>
+        {user && user.email &&
         <div className="flex flex-shrink-0 border-t border-indigo-800 p-4">
-          <a href="#" className="group block w-full flex-shrink-0">
-            <div className="flex items-center">
-              <div>
-                <img
-                  className="inline-block h-9 w-9 rounded-full"
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                  alt=""
-                />
-              </div>
+          <div className="flex items-center">
+            <div>
+              <img
+                className="inline-block h-9 w-9 rounded-full"
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                alt=""
+              />
+            </div>
+            <div>
               <div className="ml-3">
-                <p className="text-sm font-medium text-white">Tom Cook</p>
-                <p className="text-xs font-medium text-indigo-200 group-hover:text-white">View profile</p>
+                <p className="text-sm font-medium text-white">{user?.email}</p>
+              </div>
+              <div>
+                <a onClick={signOut}> click here for fucksake</a>
               </div>
             </div>
-          </a>
+          </div>
         </div>
+        }
       </div>
     </div>
   )
