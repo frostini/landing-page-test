@@ -8,14 +8,15 @@ create routes/pages for
   drafts - show/edit
 create the new show
 - link the create drafts button to new
+- seperate each page screen into wizards steps and create all the wizard steps
+- link up the different wizard steps with Link element
+
+
 TODO
 ----
-- seperate each page screen into wizards steps and create all the wizard steps
+- add the step indicator
 ----
 
-
-- link up the different wizard steps with Link element
-- add the step indicator
 - add wizard breadcrumbs links
 update the elements for step one
 update the elements for step two
