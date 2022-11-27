@@ -11,7 +11,6 @@ export function LogoType() {
   )
 }
 
-
 export function LogoImage(props) {
   return (
     <Image 
