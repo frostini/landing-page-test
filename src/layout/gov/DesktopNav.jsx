@@ -46,7 +46,7 @@ export default function DesktopNav({ user = {} }) {
           </nav>
         </div>
         {user && user.email &&
-        <div className="flex flex-shrink-0 border-t border-indigo-800 p-4">
+        <div className="flex flex-col flex-shrink-0 border-t border-indigo-800 p-4">
           <div className="flex items-center">
             <div>
               <img
@@ -56,12 +56,14 @@ export default function DesktopNav({ user = {} }) {
               />
             </div>
             <div>
-              <div className="ml-3">
-                <p className="text-sm font-medium text-white">{user?.email}</p>
-              </div>
               <div>
-                <a onClick={signOut}> click here for fucksake</a>
+                <a className={'text-white pl-3'} onClick={signOut}> click to sign out</a>
               </div>
+            </div>
+          </div>
+          <div>
+            <div className="ml-3">
+              <p className="text-sm font-medium text-white">{user?.email}</p>
             </div>
           </div>
         </div>
