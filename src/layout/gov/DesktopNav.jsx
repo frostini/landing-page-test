@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { NavLinks as navigation } from '@/layout/gov/NavLinks'
 import { Auth } from 'aws-amplify';
-
+import { LogoLight } from '@/components/Logo'
 
 
 function classNames(...classes) {
@@ -26,11 +26,7 @@ export default function DesktopNav({ user = {} }) {
       <div className="flex min-h-0 flex-1 flex-col bg-indigo-700">
         <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
           <div className="flex flex-shrink-0 items-center px-4">
-            <img
-              className="h-8 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=300"
-              alt="Your Company"
-            />
+            <LogoLight/>
           </div>
           <nav className="mt-5 flex-1 space-y-1 px-2">
             {navigation.map((item) => (

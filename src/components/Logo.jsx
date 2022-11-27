@@ -1,5 +1,6 @@
 import Image from 'next/image'
-import loguito from 'public/pplogo.png'
+import logo from 'public/pplogo.png'
+import logoLight from 'public/pplogolight.png'
 
 export function LogoType() {
   return (
@@ -15,8 +16,26 @@ export function LogoImage(props) {
   return (
     <Image 
       className="h-12 w-auto pr-2"
-      src={loguito}
+      src={logo}
     />
+  )
+}
+
+export function LogoLight(props) {
+  return (
+    <>
+    <Image 
+      className="h-12 w-auto pr-2"
+      src={logoLight}
+    />
+    <div className='flex flex-col'>
+      <p className='flex items-center text-white  font-bold font-display text-xl'>
+        {'Policy'}
+        <span className="text-slate-300">{'Pal'}</span>
+      </p>
+      <p>for government</p>
+    </div>
+    </>
   )
 }
 
