@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { AuthLayout } from '@/components/AuthLayout'
 import { Button } from '@/components/Button'
 import { SelectField, TextField } from '@/components/Fields'
-import { Logo } from '@/components/Logo'
+import { LogoFull } from '@/components/Logo'
 // Render Prop
 import { Formik, Form } from 'formik';
 import signUp from '@/components/forms/SignUpForm'
@@ -99,9 +99,8 @@ export default function Register() {
       </Head>
       <AuthLayout>
         <div className="flex flex-col">
-          <Link href="/" aria-label="Home">
-            <Logo className="h-10 w-auto" />
-          </Link>
+          <LogoFull/>
+
           <div className="mt-20">
             <h2 className="text-lg font-semibold text-gray-900">
               Get started for free

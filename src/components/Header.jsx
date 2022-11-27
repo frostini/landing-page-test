@@ -5,8 +5,9 @@ import { Popover, Transition } from '@headlessui/react'
 import clsx from 'clsx'
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
-import { Logo } from '@/components/Logo'
+import { LogoType, LogoImage } from '@/components/Logo'
 import { NavLink } from '@/components/NavLink'
+import DropDownSelect from '@/components/DropDownSelect'
 import loguito from 'public/pplogo.png'
 
 function MobileNavLink({ href, children }) {
@@ -98,11 +99,8 @@ export function Header() {
           <div className="flex items-center md:gap-x-12">
             <Link href="#" aria-label="Home">
               <span className='flex items-center font-bold font-display text-xl'>
-                <Image 
-                  className="h-12 w-auto pr-2"
-                  src={loguito}
-                />
-                Policy<span className="text-blue-600">Pal</span>
+                <LogoImage/>
+                <LogoType/>
               </span>
 
               
@@ -115,11 +113,11 @@ export function Header() {
           </div>
           <div className="flex items-center gap-x-5 md:gap-x-8">
             <div className="hidden md:block">
-              <NavLink href="/login">Sign in</NavLink>
+              <DropDownSelect/>
             </div>
             <Button href="/register" color="blue">
               <span>
-                Get started <span className="hidden lg:inline">today</span>
+                Request Early Access
               </span>
             </Button>
             <div className="-mr-1 md:hidden">
