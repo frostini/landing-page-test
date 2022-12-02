@@ -6,6 +6,7 @@ import { Button } from '@/components/Button'
 import { TextField } from '@/components/Fields'
 import { LogoFull } from '@/components/Logo'
 import { Formik, Form } from 'formik';
+import SignInHook from '@/components/forms/SignInHook'
 import signIn from '@/components/forms/SignIn'
 
 const Basic = ({router}) => {
@@ -89,7 +90,7 @@ export default function Login() {
             </p>
           </div>
         </div>
-        <Basic router={router}/>
+        <SignInHook />
       </AuthLayout>
     </>
   )

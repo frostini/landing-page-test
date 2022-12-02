@@ -14,6 +14,7 @@ export function LogoType() {
 export function LogoImage(props) {
   return (
     <Image 
+      alt="PolicyPal Logo"
       className="h-12 w-auto pr-2"
       src={logo}
     />
@@ -24,6 +25,7 @@ export function LogoLight(props) {
   return (
     <>
     <Image 
+      alt="PolicyPal Logo"
       className="h-12 w-auto pr-2"
       src={logoLight}
     />
