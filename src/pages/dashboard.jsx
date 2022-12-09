@@ -27,3 +27,11 @@ Dashboard.getLayout = function getLayout(page){
     </GovAppShell>
   )
 }
+
+// export async function getStaticProps(context) {
+//   return {
+//     props: {
+//       protected: true
+//     }
+//   }
+// }

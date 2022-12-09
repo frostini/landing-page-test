@@ -9,17 +9,16 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function DesktopNav({ user = {} }) {
+export default function DesktopNav(props) {
   const router = useRouter()
+  const { user, logout } = props
   async function signOut() {
     try {
-          await Auth.signOut();
-          router.push('/')
+        logout().then(()=> router.push('/')) 
       } catch (error) {
           console.log('error signing out: ', error);
       }
   }
-
   return (
     <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
       {/* Sidebar component, swap this element with another sidebar if you like */}
@@ -45,7 +44,7 @@ export default function DesktopNav({ user = {} }) {
             ))}
           </nav>
         </div>
-        {user && user.email &&
+        {user && user.attributes &&
         <div className="flex flex-col flex-shrink-0 border-t border-indigo-800 p-4">
           <div className="flex items-center">
             <div>
@@ -63,7 +62,7 @@ export default function DesktopNav({ user = {} }) {
           </div>
           <div>
             <div className="ml-3">
-              <p className="text-sm font-medium text-white">{user?.email}</p>
+              <p className="text-sm font-medium text-white">{user.attributes?.email}</p>
             </div>
           </div>
         </div>

@@ -4,6 +4,7 @@ import { Button } from '@/components/Button'
 import * as yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup'
 import signIn from '@/components/forms/SignIn'
+import { useAuth } from '@/components/auth/user'
 import { useRouter } from 'next/router'
 
 const schema = yup.object({
@@ -50,11 +51,13 @@ function TextField({
 
 export default function SingInHook() {
   const router = useRouter()
+  const { login } = useAuth()
   const { register, handleSubmit, watch, formState: { errors } } = useForm({
     resolver: yupResolver(schema)
   });
+  
   const onSubmit = data => {
-    signIn(data).then((user) =>{
+    login(data.email, data.password).then((user) =>{
       router.push({
         pathname: '/dashboard'
       })

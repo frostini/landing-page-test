@@ -9,34 +9,18 @@ import { LogoImage } from '@/components/Logo'
 import { NavLinks as navigation } from '@/layout/gov/NavLinks'
 import DesktopNav from '@/layout/gov/DesktopNav'
 import { Auth } from 'aws-amplify';
+import { useAuth } from '@/components/auth/user'
+import Skeleton from '@/components/Skeleton'
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function GovAppShell({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const [user, setUser] = useState({})
-  useEffect(() => {
-    Auth.currentAuthenticatedUser().then((user) => {
-    
-      // console.log('user email = ' + user.attributes.email);
-      setUser(user.attributes)
-      
-    });
-  }, [user])
-  
-  // const user = await Auth.currentAuthenticatedUser()
-  
+  const { user, logout, isAuthenticated } = useAuth()
+  if (!isAuthenticated) { return <Skeleton/> } else {
   return (
     <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-gray-100">
-        <body class="h-full">
-        ```
-      */}
       <div>
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog as="div" className="relative z-40 md:hidden" onClose={setSidebarOpen}>
@@ -131,7 +115,7 @@ export default function GovAppShell({ children }) {
           </Dialog>
         </Transition.Root>
         {/* Static sidebar for desktop */}
-        <DesktopNav user={user}/>
+        <DesktopNav user={user} logout={logout}/>
         <div className="flex flex-1 flex-col md:pl-64">
           <div className="sticky top-0 z-10 bg-gray-100 pl-1 pt-1 sm:pl-3 sm:pt-3 md:hidden">
             <button
@@ -150,4 +134,5 @@ export default function GovAppShell({ children }) {
       </div>
     </>
   )
+}
 }
