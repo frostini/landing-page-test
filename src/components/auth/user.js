@@ -1,6 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react'
-import { Amplify, Hub, Auth } from 'aws-amplify'
-import Router, { useRouter } from 'next'
+import { Auth } from 'aws-amplify'
 
 const AuthContext = createContext({});
 
@@ -13,27 +12,18 @@ export const AuthProvider = ({ children }) => {
           try {
             await Auth.currentAuthenticatedUser().then((user)=> {
               setUser(user)
+              setLoading(false)
             })
           } catch (error) {
               console.log('error signing in', error);
           }
-
-            // const token = Cookies.get('token')
-            // if (token) {
-            //     console.log("Got a token in the cookies, let's see if it is valid")
-            //     api.defaults.headers.Authorization = `Bearer ${token}`
-            //     const { data: user } = await api.get('users/me')
-            //     if (user) setUser(user);
-            // }
-            if (user) {
-              setLoading(false)
-            }
+        }
+        if (user) {
+          setLoading(false)
         }
         loadUserFromCookies()
-    }, [])
-    // if (user) {
-    //   debugger
-    // }
+
+    }, [user])
 
     const login = async (username, password) => {
       try {
@@ -57,8 +47,6 @@ export const AuthProvider = ({ children }) => {
         console.log('error logging out: ', error)
       }
     }
-
-
     return (
         <AuthContext.Provider value={{ 
           isAuthenticated: !!user,
@@ -71,7 +59,5 @@ export const AuthProvider = ({ children }) => {
         </AuthContext.Provider>
     )
 }
-
-
 
 export const useAuth = () => useContext(AuthContext)
