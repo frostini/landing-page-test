@@ -18,11 +18,7 @@ export const AuthProvider = ({ children }) => {
               console.log('error signing in', error);
           }
         }
-        if (user) {
-          setLoading(false)
-        }
         loadUserFromCookies()
-
     }, [user])
 
     const login = async (username, password) => {
