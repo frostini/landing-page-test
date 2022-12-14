@@ -6,9 +6,6 @@ import { LogoFull } from '@/components/Logo'
 import ConfirmHook from '@/components/forms/ConfirmHook'
 import { useAuth } from '@/components/auth/user'
 
-const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-
-
 export default function Confirm() {
   const { confirmSignUp, resetConfirmCode } = useAuth()
   const router = useRouter()

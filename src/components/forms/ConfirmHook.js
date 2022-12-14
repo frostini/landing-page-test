@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { Button } from '@/components/Button'
 import * as yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup'
-import { TextFieldd as TextField } from '@/components/Fields'
+import { TextField } from '@/components/Fields'
 
 const schema = yup.object({}).required();
 
@@ -13,7 +13,6 @@ export default function ConfirmHook({ onConfirm }) {
   const { register, handleSubmit, watch, formState: { errors } } = useForm({
     resolver: yupResolver(schema)
   });
-  console.log(watch('code'))
   return (
     /* "hcodendleSubmit" will validate your inputs before invoking "onSubmit" */
     <form 

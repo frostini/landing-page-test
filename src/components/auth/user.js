@@ -37,12 +37,6 @@ export const AuthProvider = ({ children }) => {
 
     const signUp = async (values) => {
       const { email: username, password } = values
-      // 1. test custom attribute on new sign up.
-      // 2. organization name, url,
-      // add address
-
-        // return values
-    
         try {
             const { user } = await Auth.signUp({
                 username,
