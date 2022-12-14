@@ -2,19 +2,22 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { AuthLayout } from '@/components/AuthLayout'
-import { Button } from '@/components/Button'
-import { SelectField, TextField } from '@/components/Fields'
 import { LogoFull } from '@/components/Logo'
-// Render Prop
-import React from 'react';
-import { Formik, Form } from 'formik';
-import confirmSignUp from '@/components/forms/SignUpConfirm'
+import ConfirmHook from '@/components/forms/ConfirmHook'
+import { useAuth } from '@/components/auth/user'
+
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 
 export default function Confirm() {
-    const router = useRouter()
-  
+  const { confirmSignUp, resetConfirmCode } = useAuth()
+  const router = useRouter()
+  const { email: username } = router.query
+  const onConfirm = (e) => {     
+    confirmSignUp({ ...e, username }).then((_) => {
+      router.push({pathname: '/login'})
+    })
+  }
   return (
     <>
       <Head>
@@ -31,7 +34,7 @@ export default function Confirm() {
             </h2>
             <p className="mt-2 text-sm text-gray-700">
               Request another confirmation code?{' '}
-              <button 
+              <button onClick={() => resetConfirmCode({username})}
                 className="font-medium text-blue-600 hover:underline"
               >
                   Click here to request
@@ -40,45 +43,7 @@ export default function Confirm() {
           </div>
         </div>
   <div>
-    <Formik
-      initialValues={{ 
-        code: '',
-        username: '',
-      }}
-      onSubmit={(values, {isSubmitting}) => {
-        const { code } = values
-        const { email: username } = router.query
-        confirmSignUp({username,code}).then((user) => {
-          router.push({
-            pathname: '/dashboard'
-          })
-        }) 
-      }}
-    >
-      {({ isSubmitting }) => (
-        <Form className="mt-10 grid grid-cols-1 gap-y-8">
-          <TextField
-            label="Confirmation Code"
-            id="code"
-            name="code"
-            type="text"
-            autoComplete="code"
-            required
-          />
-          <Button
-            type="submit"
-            variant="solid"
-            color="blue"
-            className="w-full"
-            disabled={isSubmitting}
-          >
-            <span>
-              Complete Sign Up<span aria-hidden="true">&rarr;</span>
-            </span>
-          </Button>
-        </Form>
-      )}
-    </Formik>
+    <ConfirmHook onConfirm={onConfirm}/>
   </div>
 
       </AuthLayout>
